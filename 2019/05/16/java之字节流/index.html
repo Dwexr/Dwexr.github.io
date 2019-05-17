@@ -7,6 +7,8 @@
 <p>第二种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">File file1 = new File(&quot;C:\\\\Users\\\\Administrator\\\\Desktop\\\\text\\\\git.txt&quot;);</span><br><span class="line">FileInputStream f = new FileInputStream(file1);</span><br></pre></td></tr></table></figure></p>
 <p>第三种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">File file2 = new File(&quot;C:\\\\Users\\\\Administrator\\\\Desktop\\\\text\\\\git.txt&quot;);</span><br><span class="line">InputStream inputstream = new FileInputStream(file2);</span><br></pre></td></tr></table></figure></p>
 <p>——————————————-我是补坑的分割线—————————————–</p>
+<p>6.InputStream中的read()方法<br>    在没有参数的情况下，流的数据会传到栈里。</p>
+<p>7.FileInputStream里都是采用绝对路径，也可以获取父路径来获取相对路径。</p>
 </div></div><div class="post-main post-comment"></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
   $(".fancybox").fancybox();
 });

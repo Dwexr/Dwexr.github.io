@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>permission denied (publickey)问题的解决方法 | Hexo</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/font.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a></nav><div class="container post-meta"><div class="post-time">2019-07-22</div></div></div><div class="container post-header"><h1>permission denied (publickey)问题的解决方法</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary></details></div><div class="container post-content"><ul>
+<li><p>配置问题</p>
+<p>检查本地C:\Users\电脑用户名\下是否有.ssh这个文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">ls</span><br><span class="line">cat 名字.pub</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>若没有则新建</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的邮箱&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在Github上设置</p>
+<p>先点击Settings</p>
+<p><img src="/2019/07/22/permission denied (publickey)问题的解决方法/My_Blog\Hexo\source\_posts\permission denied (publickey" alt="1">问题的解决方法\1.jpg)</p>
+<p>接着点击SSH and GPG keys，设置全局key。</p>
+<p><img src="/2019/07/22/permission denied (publickey)问题的解决方法/My_Blog\Hexo\source\_posts\permission denied (publickey" alt="2">问题的解决方法\2.jpg)</p>
+<p>再点击New SSH key绿色按钮</p>
+<p><img src="/2019/07/22/permission denied (publickey)问题的解决方法/My_Blog\Hexo\source\_posts\permission denied (publickey" alt="3">问题的解决方法\3.jpg)</p>
+<p>将名字.pub的文件内容复制到key的文本框中，并提交就设置好了。</p>
+<p><img src="/2019/07/22/permission denied (publickey)问题的解决方法/My_Blog\Hexo\source\_posts\permission denied (publickey" alt="4">问题的解决方法\4.jpg)</p>
+</li>
+<li><p>检查连接 成功与否</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>若不成功，可检查邮箱密码是否配置好了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config user.name/user.email</span><br><span class="line">git config --global user.name</span><br><span class="line">git config --global user.email youremail</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>命令问题</p>
+<p>我之前有过命令上的错误，在git remote add这里，正确格式是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:yourname/yourproject.git</span><br></pre></td></tr></table></figure>
+<p>错误格式是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin yourname@github.com:yourname/yourproject.git</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>  yourname —— Github的用户名</p>
+<p>  yourproject ——Github的库名</p>
+<p>  youremail ——Github注册的邮箱</p>
+<ul>
+<li><p>注意</p>
+<p>由于Github里每个库设置的SSH只能被一个库用，即若有一个库，用了本机的SSH，另一库再配置同样的key，Github会提示Key is already。即一个key只能用一次，所以想要各个库都用，我们进行全局配置。</p>
+</li>
+</ul>
+</div></div><div class="post-main post-comment"></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+  $(".fancybox").fancybox();
+});
+</script></body></html>

@@ -40,7 +40,11 @@
 <p>  youremail ——Github注册的邮箱</p>
 <ul>
 <li><p>注意</p>
-<p>由于Github里每个库设置的SSH只能被一个库用，即若有一个库，用了本机的SSH，另一库再配置同样的key，Github会提示Key is already。即一个key只能用一次，所以想要各个库都用，我们进行全局配置。</p>
+<p>在官方文档中</p>
+<p><strong>Once a key has been attached to one repository as a deploy key, it cannot be used on another repository.</strong> </p>
+<p>一个键作为部署的ssh key使用<strong>只能</strong>绑定一个仓库。</p>
+<p>由于Github里每个库设置的SSH只能被一个库用，即库A用了本机的key，另一库B再配置同样的key，Github会提示Key is already in use。</p>
+<p>所以如果你想用一个key配置多个不同仓库的SSH-key，可通过Github中的SSH and GPG keys 进行全局配置。即配置一个全局SSH-Key。</p>
 </li>
 </ul>
 </div></div><div class="post-main post-comment"></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {

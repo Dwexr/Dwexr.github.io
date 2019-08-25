@@ -1,0 +1,13 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>cmd中启动tomcat出现乱码的解决方案 | Hexo</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/font.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a></nav><div class="container post-meta"><div class="post-time">2019-08-25</div></div></div><div class="container post-header"><h1>cmd中启动tomcat出现乱码的解决方案</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary></details></div><div class="container post-content"><p>问题：在Tomcat的本地目录bin中运行startup.bat时，我们会看到出现中文乱码。</p>
+<p><img src="/2019/08/25/cmd中启动tomcat出现乱码的解决方案/1.jpg" alt="1"></p>
+<p>由于出现乱码是一件非常影响视觉的享受，所以我去尝试了改/bin/catalina.bat和/conf/server.xml。</p>
+<p>但并没有用。</p>
+<p>解决：找到Tomcat中的logging.properties，用编辑器打开，这里用的是Notepad++。</p>
+<p><img src="/2019/08/25/cmd中启动tomcat出现乱码的解决方案/2.jpg" alt="2"></p>
+<p>将java.util.logging.ConsoleHandler.encoding = UTF-8</p>
+<p>改为java.util.logging.ConsoleHandler.encoding = GBK</p>
+<p>然后就可以正常显示中文了。</p>
+</div></div><div class="post-main post-comment"></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+  $(".fancybox").fancybox();
+});
+</script></body></html>

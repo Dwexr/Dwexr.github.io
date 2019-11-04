@@ -1,14 +1,1309 @@
-<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Hexo | null</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/font.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><header class="wrapper header"><div class="container blog-title"><a class="title" id="logo" href="/.">Hexo</a><span class="subtitle"></span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div><input id="menu" type="checkbox"><div class="container nav-items"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a></div></header><article class="wrapper"><div class="container entries" id="index-main"><div class="post-entry"><div class="post-desc"><div class="post-title"><a href="/2019/08/25/cmd中启动tomcat出现乱码的解决方案/">cmd中启动tomcat出现乱码的解决方案</a></div><div class="post-content"><ul>
+<!DOCTYPE html>
+<html >
+<head>
+    <!--
+    /**
+    * Author: Li Kachung
+    * Contact: leekachung17@gmail.com
+    */
+-->
+<meta charset="utf-8" />
+<meta name="referrer" content="no-referrer" />
+
+<meta name="generator" content="Hexo 3.8.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Hexo</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://Dwexr.github.io/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://dwexr.github.io/images/og_image.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:image" content="http://dwexr.github.io/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/./images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="https://raw.githubusercontent.com/leekachung/ImgOss/master/LKC1.jpg" alt="Hexo" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu" style="font-weight:700 !important;">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    Search
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-05T02:05:44.000Z">2019-09-05</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 read (About 241 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/05/git创建并合并分支/">git创建并合并分支</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="创建与合并分支"><a href="#创建与合并分支" class="headerlink" title="创建与合并分支"></a>创建与合并分支</h2><ul>
+<li>找到自己的本地仓库，若没有则执行下面语句进行创建。</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>创建并切换分支</p>
+<ul>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b test1</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git branch test1</span><br><span class="line">$ git checkout test1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>在执行完上面的命令后，可以通过下面命令查看</p>
+<ul>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>此时分支位于<code>test1</code>,在分支上进行对文件修改。</p>
+</li>
+<li><p>接着在<code>test1</code>分支上提交</p>
+<ul>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add *		//git add * 会忽略.gitignore把任何文件都加入</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add .		//git add . 会把本地所有untrack的文件都加入暂存区，并且会根据.gitignore做过滤。</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m &apos;The first&apos;		//进行标注</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>现在我们要切换回master分支</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>此时我们的分支为master分支，我们要把master分支与<code>test1</code>分支进行合并</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git merge test1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分支合成完后，就可以删除<code>test1</code>分支.</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -d test1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>我们可以查看分支，看看是否删除成功。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-08-25T05:29:17.000Z">2019-08-25</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 read (About 154 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/08/25/cmd中启动tomcat出现乱码的解决方案/">cmd中启动tomcat出现乱码的解决方案</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
 <li>问题：在Tomcat的本地目录bin中运行startup.bat时，我们会看到出现中文乱码。</li>
 </ul>
-<p><img src="/2019/08/25/cmd中启动tomcat出现乱码的解决方案/1.jpg" alt="1"></p></div><div class="post-meta"><div class="post-time">2019-08-25</div></div></div></div><div class="post-entry"><div class="post-desc"><div class="post-title"><a href="/2019/07/25/git7-25/">git error：failed to push some refs to</a></div><div class="post-content"><ul>
-<li><p>在执行本地上传到远程库的时候报了错误error：failed to push some refs to ‘<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:……’。</p></li></ul></div><div class="post-meta"><div class="post-time">2019-07-25</div></div></div></div><div class="post-entry"><div class="post-desc"><div class="post-title"><a href="/2019/07/25/Hailstone问题/">Hailstone Sequence</a></div><div class="post-content"><p>希尔顿序列问题是一个著名的数学问题，至今未证明其正确性，也没证明其错误性，即任何一个正整数N，如果是偶数的话就除以2，如果是奇数的话就乘以3再加上1，最后这个数都会变为1。其表达式如下：</p></div><div class="post-meta"><div class="post-time">2019-07-25</div></div></div></div><div class="post-entry"><div class="post-desc"><div class="post-title"><a href="/2019/07/22/permission-denied-publickey的解决问题/">permission denied （publickey）的解决问题</a></div><div class="post-content"><ul>
-<li><p>配置问题</p></li></ul></div><div class="post-meta"><div class="post-time">2019-07-22</div></div></div></div><div class="post-entry"><div class="post-desc"><div class="post-title"><a href="/2019/07/07/Linux操作/">Linux常用的一些命令</a></div><div class="post-content"><h2 id="1-删除文件"><a href="#1-删除文件" class="headerlink" title="1.删除文件"></a>1.删除文件</h2><p>-r 就是向下递归，不管有多少级目录，一并删除<br>-f 就是直接强行删除，不作任何提示的意思</p></div><div class="post-meta"><div class="post-time">2019-07-07</div></div></div></div><div class="post-entry"><div class="post-desc"><div class="post-title"><a href="/2019/07/06/PhpWord制作表格之合并单元格/">PhpWord制作表格之合并单元格</a></div><div class="post-content"><p>在通过对项目下载安装了PhpWord的安装包后，在vendor/phpoffice/phpword/src/PhpWord/Style/Cell.php中可看到GridSpan和VMerge的方法。</p></div><div class="post-meta"><div class="post-time">2019-07-06</div></div></div></div><div class="post-entry"><div class="post-desc"><div class="post-title"><a href="/2019/06/23/windows自带的远程连接/">Windows自带的远程连接</a></div><div class="post-content"><h2 id="一、查询局域网电脑IP地址。"><a href="#一、查询局域网电脑IP地址。" class="headerlink" title="一、查询局域网电脑IP地址。"></a>一、查询局域网电脑IP地址。</h2><p>方法：</p></div><div class="post-meta"><div class="post-time">2019-06-23</div></div></div></div><div class="post-entry"><div class="post-desc"><div class="post-title"><a href="/2019/05/16/java之字节流/">java之IO流学习</a></div><div class="post-content"><h2 id="IO流（输入流、输出流）"><a href="#IO流（输入流、输出流）" class="headerlink" title="IO流（输入流、输出流）"></a>IO流（输入流、输出流）</h2><p>字节流、字符流<br>1.字节流<br>（1）InputStream、OutputStream<br>    InputStream抽象了应用程序读取数据的方式<br>    OutputStream抽象了应用程序写出数据的方式<br>（2）EOF = End 读到-1就读到结尾<br>（3）输入流基本方法<br>    int b = in.read(); 读取一个字节无符号填充到int低八位。<br>    -1是EOF<br>    in.read(byte[] buf)<br>    in.read(byte[] buf,int start,int size)<br>（4)输出流基本方法<br>    out.write(int b) 写出一个byte到流，b的低八位<br>    out.write(byte[] buf)将buf字节数组都写入到流<br>    out.write(byte[] buf,int start,int size)<br>（5）FileinputStream实现字符流文件读取</p>
-<p>2.所有的IO会抛出IOException异常<br>解决：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import java.io.IOException;</span><br></pre></td></tr></table></figure></p>
-<p>同时不要忘了捕捉异常,以IOException为例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">i.print(&quot;C:\\Users\\Administrator\\Desktop\\text\\git.txt&quot;);</span><br><span class="line">&#125; catch (IOException e) &#123;</span><br><span class="line">	// TODO Auto-generated catch block</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>——————————————-我是补坑的分割线—————————————–<br>3.java之矩阵输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream in = new FileInputStream();</span><br><span class="line">&lt;!--此时该方法会抛出异常，请throws--&gt;</span><br><span class="line">while((b=in.read())!=-1)&#123;</span><br><span class="line"> System.out.print(b);</span><br><span class="line"> if(i++%5==0)&#123;</span><br><span class="line">    System.out.println(&quot;&quot;);&lt;!--实现每5个换行--&gt;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>——————————————-我是补坑的分割线—————————————–<br>4.关于异常IOException与FileNotFoundException的关系<br></p></div><div class="post-meta"><div class="post-time">2019-05-16</div></div></div></div><div class="post-entry"><div class="post-desc"><div class="post-title"><a href="/2019/05/11/Laravel学习中的坑（一）/">Laravel学习中的坑（一）</a></div><div class="post-content"><h2 id="Laravel之No-application-encryption-key-has-been-specified"><a href="#Laravel之No-application-encryption-key-has-been-specified" class="headerlink" title="Laravel之No application encryption key has been specified"></a>Laravel之No application encryption key has been specified</h2><p>在创建了新的laravel项目后, 运行提示:No application encryption key has been specified</p></div><div class="post-meta"><div class="post-time">2019-05-11</div></div></div></div><div class="post-entry"><div class="post-desc"><div class="post-title"><a href="/2019/05/06/PhpStorm2018许可过期解决方法/">PhpStorm2018许可过期解决方法</a></div><div class="post-content"><a id="more"></a>
-<p>1.首先先打开<a href="http://idea.lanyus.com" target="_blank" rel="noopener"></a> （该地址目前还没崩。。。。）获取注册码，并复制粘贴。<br><img src="/2019/05/06/PhpStorm2018许可过期解决方法/01.png" alt="PhpStorm2018许可过期解决方法"><br><!-- more --></p></div><div class="post-meta"><div class="post-time">2019-05-06</div></div></div></div></div></article><div class="wrapper page-navigator-wrapper"><div class="page-navigator"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a></div></div><footer class="footer wrapper"><div class="social"><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer-content">© 2019 <a href="/" rel="nofollow">Hexo</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/hexo-theme-noise">noise</a>.</div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
-  $(".fancybox").fancybox();
+<p><img src="/2019/08/25/cmd中启动tomcat出现乱码的解决方案/1.jpg" alt="1"></p>
+<p>由于出现乱码是一件非常影响视觉的享受，所以我去尝试了改/bin/catalina.bat和/conf/server.xml。</p>
+<p>但并没有用。</p>
+<ul>
+<li>解决：找到Tomcat中的logging.properties，用编辑器打开，这里用的是Notepad++。</li>
+</ul>
+<p><img src="/2019/08/25/cmd中启动tomcat出现乱码的解决方案/2.jpg" alt="2"></p>
+<p>将java.util.logging.ConsoleHandler.encoding = UTF-8</p>
+<p>改为java.util.logging.ConsoleHandler.encoding = GBK</p>
+<p>然后就可以正常显示中文了。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-25T07:05:38.000Z">2019-07-25</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 read (About 768 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/07/25/git7-25/">git error：failed to push some refs to</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li><p>在执行本地上传到远程库的时候报了错误error：failed to push some refs to ‘<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:……’。</p>
+<p>以及hint(提示）表明在执行’git push…’前要执行’git pull’。</p>
+</li>
+</ul>
+<p><img src="/2019/07/25/git7-25/1.png" alt="1"></p>
+<ul>
+<li><p>原因：本地仓库代码与远程仓库代码有冲突</p>
+</li>
+<li><p>解决：将本地修改变更的部分和远程仓库中修改变更的部分进行合并</p>
+<ul>
+<li><p><strong>拉取（下载）指定分支代码合并到当前分支</strong></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull orign master</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>将当前分支推送到origin主机的对应分支：</strong></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push orgin master</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>注意此处：</p>
+<ul>
+<li><p>在拉取合并分支的时候，我增加了rebase，</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase orgin master</span><br></pre></td></tr></table></figure>
+<p>那么这个跟我上面不加参数的拉取合并有什么区别呢?为什么要使用rebase?</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>从git pull分析</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git pull = git fetch + git merge FETCH_HEAD </span><br><span class="line">git pull --rebase =  git fetch + git rebase FETCH_HEAD</span><br></pre></td></tr></table></figure>
+<ul>
+<li>git pull操作其实是git fetch 与 git merge 两个命令的集合。</li>
+</ul>
+</li>
+<li><p>git pull  等效于先执行 git fetch origin 当前分支名, 再执行 git merge FETCH_HEAD.</p>
+</li>
+</ul>
+<ul>
+<li><p>关于merge 与 rebase</p>
+<p>比如现在我们有两个分支orign和mywork。</p>
+<p><img src="/2019/07/25/git7-25/2.png" alt="2"></p>
+</li>
+</ul>
+<pre><code>现在要把mywork合并到orgin，有两种方法。
+
+- git pull
+
+  ![3](git7-25/3.png)
+
+
+
+- git pull --rebase orgin master
+
+  ![4](git7-25/4.png)
+
+
+
+上面可以看出
+
+- merge操作会生成一个新的节点，之前的提交分开显示。
+
+- rebase操作不会生成新的节点，是将两个分支融合成一个线性的提交。
+</code></pre><ul>
+<li><p>正常的解决冲突过程</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;...&quot; </span><br><span class="line">git push时因为本地仓库代码与远程仓代码有冲突，所以接下来</span><br><span class="line">git pull			//拉取远程代码，而冲突需要手动解决</span><br><span class="line">解决好后重新进行git add . git commit -m&quot;..&quot; git push</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>含rebase的解决冲突过程</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;...&quot; </span><br><span class="line">git push时因为本地仓库代码与远程仓代码有冲突，所以接下来</span><br><span class="line">git pull --rebase 			 //拉取远程代码，而冲突需要手动解决</span><br><span class="line">git add.					</span><br><span class="line">git rebase --continue   //确认处理好冲突后则将调整好的文件添加到暂存区，并执行该命令告诉git，我已经解决好冲突了。</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>总结</p>
+<ul>
+<li><p>git pull –rebase用在合并代码的时候其作用就是在一个随机创建的分支上处理冲突，避免了直接污染原来的分区</p>
+</li>
+<li><p>merge 操作遇到冲突的时候，当前merge不能继续进行下去。</p>
+<p>手动修改冲突内容后，add 修改，commit 就可以了。</p>
+</li>
+<li><p>rebase 操作遇到冲突的时候，会中断rebase,同时会提示去解决冲突。<br>解决冲突后,不需要commit。</p>
+<p>将修改add后执行git rebase –continue继续操作，或者git rebase –skip忽略冲突。</p>
+<p>push到远端。    </p>
+</li>
+<li><p>git push -u origin master 使用之后可以将本地的master分支推送到origin主机，同时指定origin为默认主机，后面就可以不加任何参数使用git push了。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-25T06:57:53.000Z">2019-07-25</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 read (About 199 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/07/25/Hailstone问题/">Hailstone Sequence</a>
+            
+        </h1>
+        <div class="content">
+            <p>希尔顿序列问题是一个著名的数学问题，至今未证明其正确性，也没证明其错误性，即任何一个正整数N，如果是偶数的话就除以2，如果是奇数的话就乘以3再加上1，最后这个数都会变为1。其表达式如下：</p>
+<p><img src="/2019/07/25/Hailstone问题/1.jpg" alt="1"></p>
+<p>通过递归发现，每次对n这个数字进行判断奇偶性，采用不同的计算公式。</p>
+<p>例:当n=5的时候，</p>
+<p>结果：Halistone(5)={5,16,8,4,2,1}</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int halistone(int n)&#123;</span><br><span class="line">int length =0;</span><br><span class="line">while(n&gt;1)&#123;</span><br><span class="line">	(n%2)?n/=2:n=n*3+1;</span><br><span class="line">	length++;</span><br><span class="line">	&#125;</span><br><span class="line">	return length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于该程序无法判断有穷性，所以该程序不能作为算法。</p>
+<p>总结：</p>
+<p>程序未必等于算法，要满足算法的有穷性。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-22T12:08:49.000Z">2019-07-22</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 read (About 421 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/07/22/permission-denied-publickey的解决问题/">permission denied （publickey）的解决问题</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li><p>配置问题</p>
+<p>检查本地C:\Users\电脑用户名\下是否有.ssh这个文件夹</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">ls</span><br><span class="line">cat 名字.pub</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>若没有则新建</p>
+<ul>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的邮箱&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在Github上设置</p>
+<p>先点击Settings</p>
+<p><img src="/2019/07/22/permission-denied-publickey的解决问题/1.jpg" alt="1"></p>
+<p>接着点击SSH and GPG keys，设置全局key。</p>
+<p><img src="/2019/07/22/permission-denied-publickey的解决问题/2.jpg" alt="2"></p>
+<p>再点击New SSH key绿色按钮</p>
+<p><img src="/2019/07/22/permission-denied-publickey的解决问题/3.jpg" alt="3"></p>
+<p>将名字.pub的文件内容复制到key的文本框中，并提交就设置好了。</p>
+<p><img src="/2019/07/22/permission-denied-publickey的解决问题/4.jpg" alt="4"></p>
+</li>
+<li><p>检查连接 成功与否</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>若不成功，可检查邮箱密码是否配置好了</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config user.name/user.email</span><br><span class="line">git config --global user.name</span><br><span class="line">git config --global user.email youremail</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>命令问题</p>
+<p>我之前有过命令上的错误，在git remote add这里，正确格式是：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:yourname/yourproject.git</span><br></pre></td></tr></table></figure>
+<p>错误格式是：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin yourname@github.com:yourname/yourproject.git</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>  yourname —— Github的用户名</p>
+<p>  yourproject ——Github的库名</p>
+<p>  youremail ——Github注册的邮箱</p>
+<ul>
+<li><p>注意</p>
+<p>在官方文档中</p>
+<p><strong>Once a key has been attached to one repository as a deploy key, it cannot be used on another repository.</strong> </p>
+<p>一个键作为部署的ssh key使用<strong>只能</strong>绑定一个仓库。</p>
+<p>由于Github里每个库设置的SSH只能被一个库用，即库A用了本机的key，另一库B再配置同样的key，Github会提示Key is already in use。</p>
+<p>所以如果你想用一个key配置多个不同仓库的SSH-key，可通过Github中的SSH and GPG keys 进行全局配置。即配置一个全局SSH-Key。</p>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-07T09:04:54.000Z">2019-07-07</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 read (About 464 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/07/07/Linux操作/">Linux常用的一些命令</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="1-删除文件"><a href="#1-删除文件" class="headerlink" title="1.删除文件"></a>1.删除文件</h2><p>-r 就是向下递归，不管有多少级目录，一并删除<br>-f 就是直接强行删除，不作任何提示的意思</p>
+<p>删除文件夹实例，在删除整个文件夹时，无需进入该文件所在路径，可通过rm -rf +文件夹所在路径删除。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /usr/local/nginx/html/test</span><br></pre></td></tr></table></figure></p>
+<p>删除单个文件，可进入该文件所在文件夹，通过rm -f+文件名删除。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -f one.html</span><br></pre></td></tr></table></figure></p>
+<p>删除单个文件也可通过rm -f +路径+文件名删除。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -f /usr/local/nginx/html/one.html</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-显示文件夹所含所有文件"><a href="#2-显示文件夹所含所有文件" class="headerlink" title="2.显示文件夹所含所有文件"></a>2.显示文件夹所含所有文件</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
+<h2 id="3-查看Linux输入命令的历史会话"><a href="#3-查看Linux输入命令的历史会话" class="headerlink" title="3.查看Linux输入命令的历史会话"></a>3.查看Linux输入命令的历史会话</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history</span><br></pre></td></tr></table></figure>
+<h2 id="4-Nginx重启"><a href="#4-Nginx重启" class="headerlink" title="4.Nginx重启"></a>4.Nginx重启</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin</span><br><span class="line">./nginx -s reload</span><br></pre></td></tr></table></figure>
+<h2 id="5-改变文件权限"><a href="#5-改变文件权限" class="headerlink" title="5.改变文件权限"></a>5.改变文件权限</h2><p>在Unix和Linux的各种操作系统下，每个文件（文件夹也被看作是文件）都按读、写、运行设定权限。</p>
+<p>| + :  表示增加权限、- 表示取消权限、= 表示唯一设定权限<br>| r : 表示可读取，w 表示可写入，x 表示可执行。<br>| u : 表示该档案的拥有者，g 表示与该档案的拥有者属于同一个群体(group)者，o 表示其他以外的人。<br>| -R : 对目前目录下的所有档案与子目录进行相同的权限变更(即以递回的方式逐个变更)</p>
+<p>例：将档案（单个文件）设为所有人皆可读取。<br>第一种：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod ugo+r  file1.txt</span><br></pre></td></tr></table></figure></p>
+<p>第二种：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod a file1.txt</span><br></pre></td></tr></table></figure></p>
+<p>可用字母表示对象，可用数字表示权限。<br>例：将当前目录所有档案与子目录设为可读取、写入、执行。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 storage</span><br></pre></td></tr></table></figure></p>
+<p>转：<a href="https://blog.csdn.net/marleylee/article/details/77251288" target="_blank" rel="noopener">https://blog.csdn.net/marleylee/article/details/77251288</a></p>
+<p>## </p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-06T13:21:34.000Z">2019-07-06</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 read (About 442 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/07/06/PhpWord制作表格之合并单元格/">PhpWord制作表格之合并单元格</a>
+            
+        </h1>
+        <div class="content">
+            <p>在通过对项目下载安装了PhpWord的安装包后，在vendor/phpoffice/phpword/src/PhpWord/Style/Cell.php中可看到GridSpan和VMerge的方法。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">public function getGridSpan()</span><br><span class="line">&#123;</span><br><span class="line">    return $this-&gt;gridSpan;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Set grid span (colspan)</span><br><span class="line"> *</span><br><span class="line"> * @param int $value</span><br><span class="line"> * @return self</span><br><span class="line"> */</span><br><span class="line">public function setGridSpan($value = null)</span><br><span class="line">&#123;</span><br><span class="line">    $this-&gt;gridSpan = $this-&gt;setIntVal($value, $this-&gt;gridSpan);</span><br><span class="line"></span><br><span class="line">    return $this;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Get vertical merge (rowspan).</span><br><span class="line"> *</span><br><span class="line"> * @return string</span><br><span class="line"> */</span><br><span class="line">public function getVMerge()</span><br><span class="line">&#123;</span><br><span class="line">    return $this-&gt;vMerge;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Set vertical merge (rowspan)</span><br><span class="line"> *</span><br><span class="line"> * @param string $value</span><br><span class="line"> * @return self</span><br><span class="line"> */</span><br><span class="line">public function setVMerge($value = null)</span><br><span class="line">&#123;</span><br><span class="line">    $enum = array(self::VMERGE_RESTART, self::VMERGE_CONTINUE);</span><br><span class="line">    $this-&gt;vMerge = $this-&gt;setEnumVal($value, $enum, $this-&gt;vMerge);</span><br><span class="line"></span><br><span class="line">    return $this;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Get shading</span><br><span class="line"> *</span><br><span class="line"> * @return \PhpOffice\PhpWord\Style\Shading</span><br><span class="line"> */</span><br><span class="line">public function getShading()</span><br><span class="line">&#123;</span><br><span class="line">    return $this-&gt;shading;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Set shading</span><br><span class="line"> *</span><br><span class="line"> * @param mixed $value</span><br><span class="line"> * @return self</span><br><span class="line"> */</span><br><span class="line">public function setShading($value = null)</span><br><span class="line">&#123;</span><br><span class="line">    $this-&gt;setObjectVal($value, &apos;Shading&apos;, $this-&gt;shading);</span><br><span class="line"></span><br><span class="line">    return $this;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Get cell width</span><br><span class="line"> *</span><br><span class="line"> * @return int</span><br><span class="line"> */</span><br><span class="line">public function getWidth()</span><br><span class="line">&#123;</span><br><span class="line">    return $this-&gt;width;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#表格实战<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">//自定义样式</span><br><span class="line">        $myStyle = &apos;mystyle&apos;;</span><br><span class="line">        $phpword -&gt;addFontStyle(</span><br><span class="line">            $myStyle,</span><br><span class="line">            [</span><br><span class="line">                &apos;name&apos; =&gt; &apos;Joker&apos;,</span><br><span class="line">                &apos;size&apos; =&gt; 15,</span><br><span class="line">                &apos;color&apos; =&gt; &apos;000000&apos;,</span><br><span class="line">                &apos;bold&apos; =&gt; true,</span><br><span class="line">                &apos;spaceAfter&apos; =&gt; 500,</span><br><span class="line">            ]</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        $styleFirstRow = [&apos;bgColour&apos; =&gt; &apos;66BBEF&apos;];</span><br><span class="line"></span><br><span class="line">        $phpword -&gt;addTableStyle(&apos;mytable&apos; , $styleTable , $styleFirstRow );  //添加表格样式</span><br><span class="line"></span><br><span class="line">        $table = $section-&gt;addTable(&quot;mytable&quot; , $styleTable);</span><br><span class="line">        $table -&gt;addRow();</span><br><span class="line">        $table -&gt;addCell(4000)-&gt;addText(&quot;姓名&quot; , $myStyle);</span><br><span class="line">        $table -&gt;addCell(4000)-&gt;addText(&quot;民族&quot; , $myStyle);</span><br><span class="line">        $table -&gt;addCell(6000) -&gt; addText(&quot;政治面貌&quot; , $myStyle);</span><br><span class="line">        $table -&gt;addCell(2000,array(&apos;vMerge&apos; =&gt; &apos;restart&apos;))-&gt;addText(&quot;大头照&quot; , $myStyle);</span><br><span class="line">        $table -&gt;addRow();</span><br><span class="line">        $table -&gt;addCell(4000) -&gt;addText(&quot;出生年月&quot; , $myStyle);</span><br><span class="line">        $table -&gt;addCell(4000) -&gt;addText(&quot;年级专业&quot; , $myStyle);</span><br><span class="line">        $table -&gt;addCell(4000) -&gt;addText(&quot;学号&quot; , $myStyle);</span><br><span class="line">        $table -&gt;addCell(4000,array(&apos;vMerge&apos; =&gt; &apos;continue&apos;));</span><br><span class="line">        $table -&gt;addRow(100);</span><br><span class="line">        $table -&gt;addCell(4000,array(&apos;gridSpan&apos; =&gt; 2)) -&gt;addText(&quot;手机号码&quot; , $myStyle);</span><br><span class="line">        $table -&gt;addCell(4000,array(&apos;gridSpan&apos; =&gt; 1)) -&gt;addText(&quot;曾任职务&quot; , $myStyle);</span><br><span class="line">        $table -&gt;addCell(4000,array(&apos;vMerge&apos; =&gt; &apos;continue&apos;));</span><br><span class="line">        $table -&gt;addRow(100);</span><br><span class="line">        $table -&gt;addCell(4000,array(&apos;gridSpan&apos; =&gt; 2)) -&gt;addText(&quot;第一志愿&quot; , $myStyle);</span><br><span class="line">        $table -&gt;addCell(4000,array(&apos;gridSpan&apos; =&gt; 2)) -&gt;addText(&quot;第二志愿&quot; , $myStyle);</span><br><span class="line">        $table -&gt;addRow(3200);</span><br><span class="line">        $table -&gt;addCell(8000,array(&apos;gridSpan&apos; =&gt; 4)) -&gt;addText(&quot;个人简介&quot; , $myStyle);</span><br><span class="line">        $table -&gt;addRow(3200);</span><br><span class="line">        $table -&gt;addCell(8000,array(&apos;gridSpan&apos; =&gt; 4)) -&gt;addText(&quot;你对星空学生创新中心的理解以及对所在方向的认识&quot; , $myStyle);</span><br></pre></td></tr></table></figure></p>
+<p>效果如下：<br><img src="/2019/07/06/PhpWord制作表格之合并单元格/1.png" alt="PhpWord制作表格之合并单元格"></p>
+<p>反复爬坑<br><img src="/2019/07/06/PhpWord制作表格之合并单元格/2.png" alt="PhpWord制作表格之合并单元格"></p>
+<p><img src="/2019/07/06/PhpWord制作表格之合并单元格/3.png" alt="PhpWord制作表格之合并单元格"></p>
+<p>附：<br>官方文档——<a href="https://phpword.readthedocs.io/en/latest/recipes.html" target="_blank" rel="noopener">https://phpword.readthedocs.io/en/latest/recipes.html</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-23T14:39:08.000Z">2019-06-23</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 read (About 261 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/06/23/windows自带的远程连接/">Windows自带的远程连接</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="一、查询局域网电脑IP地址。"><a href="#一、查询局域网电脑IP地址。" class="headerlink" title="一、查询局域网电脑IP地址。"></a>一、查询局域网电脑IP地址。</h2><p>方法：</p>
+<ol>
+<li><p>通过快捷键WIN+R，输入cmd，弹出命令提示符窗口，接着输入</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找到ipv4的地址，即为该用户主机的地址。<br><img src="/2019/06/23/windows自带的远程连接/5.jpg" alt="5"><br>二、对需要进行远程连接功能的电脑进行配置。</p>
+</li>
+<li><p>在win7或win10之中找到此电脑，点击右键，找到【属性】，点击远程设置。<br><img src="/2019/06/23/windows自带的远程连接/1.jpg" alt="1"></p>
+</li>
+<li>找到远程桌面，勾选允许远程连接到此计算机。<br><img src="/2019/06/23/windows自带的远程连接/4.png" alt="4"></li>
+</ol>
+<h2 id="二、打开远程连接功能"><a href="#二、打开远程连接功能" class="headerlink" title="二、打开远程连接功能"></a>二、打开远程连接功能</h2><p>方法：</p>
+<ol>
+<li><p>通过快捷键WIN+R，输入cmd,弹出命令提示符窗口,接着输入</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mstsc</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/06/23/windows自带的远程连接/3.jpg" alt="3"><br>2.然后在远程连接的界面中，点击【显示选项】，在计算机中输入远程服务器的IP地址，以及用户名。<br><img src="/2019/06/23/windows自带的远程连接/2.jpg" alt="2"></p>
+</li>
+</ol>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-05-16T13:56:26.000Z">2019-05-16</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 read (About 431 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/05/16/java之字节流/">java之IO流学习</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="IO流（输入流、输出流）"><a href="#IO流（输入流、输出流）" class="headerlink" title="IO流（输入流、输出流）"></a>IO流（输入流、输出流）</h2><p>字节流、字符流<br>1.字节流<br>（1）InputStream、OutputStream<br>    InputStream抽象了应用程序读取数据的方式<br>    OutputStream抽象了应用程序写出数据的方式<br>（2）EOF = End 读到-1就读到结尾<br>（3）输入流基本方法<br>    int b = in.read(); 读取一个字节无符号填充到int低八位。<br>    -1是EOF<br>    in.read(byte[] buf)<br>    in.read(byte[] buf,int start,int size)<br>（4)输出流基本方法<br>    out.write(int b) 写出一个byte到流，b的低八位<br>    out.write(byte[] buf)将buf字节数组都写入到流<br>    out.write(byte[] buf,int start,int size)<br>（5）FileinputStream实现字符流文件读取</p>
+<p>2.所有的IO会抛出IOException异常<br>解决：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import java.io.IOException;</span><br></pre></td></tr></table></figure></p>
+<p>同时不要忘了捕捉异常,以IOException为例。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">i.print(&quot;C:\\Users\\Administrator\\Desktop\\text\\git.txt&quot;);</span><br><span class="line">&#125; catch (IOException e) &#123;</span><br><span class="line">	// TODO Auto-generated catch block</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>——————————————-我是补坑的分割线—————————————–<br>3.java之矩阵输出<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream in = new FileInputStream();</span><br><span class="line">&lt;!--此时该方法会抛出异常，请throws--&gt;</span><br><span class="line">while((b=in.read())!=-1)&#123;</span><br><span class="line"> System.out.print(b);</span><br><span class="line"> if(i++%5==0)&#123;</span><br><span class="line">    System.out.println(&quot;&quot;);&lt;!--实现每5个换行--&gt;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>——————————————-我是补坑的分割线—————————————–<br>4.关于异常IOException与FileNotFoundException的关系<br></p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/05/16/java之字节流/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-05-11T14:36:29.000Z">2019-05-11</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 read (About 171 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/05/11/Laravel学习中的坑（一）/">Laravel学习中的坑（一）</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Laravel之No-application-encryption-key-has-been-specified"><a href="#Laravel之No-application-encryption-key-has-been-specified" class="headerlink" title="Laravel之No application encryption key has been specified"></a>Laravel之No application encryption key has been specified</h2><p>在创建了新的laravel项目后, 运行提示:No application encryption key has been specified</p>
+<p>解决方法：<br>在终端上运行，cd到Laravel项目目录位置然后执行:<br><figure class="highlight markdown hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan key:generate</span><br></pre></td></tr></table></figure></p>
+<p>在服务器上把本地的Laravel项目部署到服务器上时，发现在运行时，会报如下错误，提示找不到日志，而且路径是本地所在路径。更可怕的是我给项目文件权限也没用。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 storage</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/05/11/Laravel学习中的坑（一）/1.jpg" alt="Laravel学习中的坑（一）"></p>
+<p>解决方法：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php artisan cache:clear</span><br><span class="line">php artisan route:clear</span><br><span class="line">php artisan dump-autoload</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/page/0/">Prev</a>
+        </div>
+        <div class="pagination-next">
+            <a class="is-flex-grow has-text-black-ter" href="/page/2/">Next</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link is-current" href="/">1</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/2/">2</a></li>
+            
+        </ul>
+    </nav>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" style="border-radius: 50%" src="https://raw.githubusercontent.com/leekachung/ImgOss/master/logo.JPG" alt="Li Kachung">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Li Kachung
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Agu Wangfo
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>ZhuHai, Guangdong</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Archives
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        16
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/leekachung" target="_blank">
+                Github</a>
+        </div>
+        
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/05/git创建并合并分支/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="git创建并合并分支">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-05T02:05:44.000Z">2019-09-05</time></div>
+                    <a href="/2019/09/05/git创建并合并分支/" class="title has-link-black-ter is-size-6 has-text-weight-normal">git创建并合并分支</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/25/cmd中启动tomcat出现乱码的解决方案/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="cmd中启动tomcat出现乱码的解决方案">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-25T05:29:17.000Z">2019-08-25</time></div>
+                    <a href="/2019/08/25/cmd中启动tomcat出现乱码的解决方案/" class="title has-link-black-ter is-size-6 has-text-weight-normal">cmd中启动tomcat出现乱码的解决方案</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/25/git7-25/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="git error：failed to push some refs to">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-25T07:05:38.000Z">2019-07-25</time></div>
+                    <a href="/2019/07/25/git7-25/" class="title has-link-black-ter is-size-6 has-text-weight-normal">git error：failed to push some refs to</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/25/Hailstone问题/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hailstone Sequence">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-25T06:57:53.000Z">2019-07-25</time></div>
+                    <a href="/2019/07/25/Hailstone问题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hailstone Sequence</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/22/permission-denied-publickey的解决问题/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="permission denied （publickey）的解决问题">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-22T12:08:49.000Z">2019-07-22</time></div>
+                    <a href="/2019/07/22/permission-denied-publickey的解决问题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">permission denied （publickey）的解决问题</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/05/git创建并合并分支/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="git创建并合并分支">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-05T02:05:44.000Z">2019-09-05</time></div>
+                    <a href="/2019/09/05/git创建并合并分支/" class="title has-link-black-ter is-size-6 has-text-weight-normal">git创建并合并分支</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/25/cmd中启动tomcat出现乱码的解决方案/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="cmd中启动tomcat出现乱码的解决方案">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-25T05:29:17.000Z">2019-08-25</time></div>
+                    <a href="/2019/08/25/cmd中启动tomcat出现乱码的解决方案/" class="title has-link-black-ter is-size-6 has-text-weight-normal">cmd中启动tomcat出现乱码的解决方案</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/25/git7-25/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="git error：failed to push some refs to">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-25T07:05:38.000Z">2019-07-25</time></div>
+                    <a href="/2019/07/25/git7-25/" class="title has-link-black-ter is-size-6 has-text-weight-normal">git error：failed to push some refs to</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/25/Hailstone问题/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hailstone Sequence">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-25T06:57:53.000Z">2019-07-25</time></div>
+                    <a href="/2019/07/25/Hailstone问题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hailstone Sequence</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/22/permission-denied-publickey的解决问题/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="permission denied （publickey）的解决问题">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-22T12:08:49.000Z">2019-07-22</time></div>
+                    <a href="/2019/07/22/permission-denied-publickey的解决问题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">permission denied （publickey）的解决问题</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="https://raw.githubusercontent.com/leekachung/ImgOss/master/LKC1.jpg" alt="Hexo" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Li Kachung</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="My GitHub" href="https://github.com/leekachung">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="My Email" href="mailto:leekachung17@gmail.com">
+                        
+                        <i class="fas fa-reply"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+
+    <div style="display:none">
+        <script type="text/javascript" src="https://s23.cnzz.com/z_stat.php?id=1277037282&web_id=1277037282"></script>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
 });
-</script></body></html>
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

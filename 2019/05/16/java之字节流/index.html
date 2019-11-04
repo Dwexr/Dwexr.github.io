@@ -1,15 +1,753 @@
-<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>java之IO流学习 | Hexo</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/font.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a></nav><div class="container post-meta"><div class="post-time">2019-05-16</div></div></div><div class="container post-header"><h1>java之IO流学习</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IO流（输入流、输出流）"><span class="toc-number">1.</span> <span class="toc-text">IO流（输入流、输出流）</span></a></li></ol></details></div><div class="container post-content"><h2 id="IO流（输入流、输出流）"><a href="#IO流（输入流、输出流）" class="headerlink" title="IO流（输入流、输出流）"></a>IO流（输入流、输出流）</h2><p>字节流、字符流<br>1.字节流<br>（1）InputStream、OutputStream<br>    InputStream抽象了应用程序读取数据的方式<br>    OutputStream抽象了应用程序写出数据的方式<br>（2）EOF = End 读到-1就读到结尾<br>（3）输入流基本方法<br>    int b = in.read(); 读取一个字节无符号填充到int低八位。<br>    -1是EOF<br>    in.read(byte[] buf)<br>    in.read(byte[] buf,int start,int size)<br>（4)输出流基本方法<br>    out.write(int b) 写出一个byte到流，b的低八位<br>    out.write(byte[] buf)将buf字节数组都写入到流<br>    out.write(byte[] buf,int start,int size)<br>（5）FileinputStream实现字符流文件读取</p>
-<p>2.所有的IO会抛出IOException异常<br>解决：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import java.io.IOException;</span><br></pre></td></tr></table></figure></p>
-<p>同时不要忘了捕捉异常,以IOException为例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">i.print(&quot;C:\\Users\\Administrator\\Desktop\\text\\git.txt&quot;);</span><br><span class="line">&#125; catch (IOException e) &#123;</span><br><span class="line">	// TODO Auto-generated catch block</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>——————————————-我是补坑的分割线—————————————–<br>3.java之矩阵输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream in = new FileInputStream();</span><br><span class="line">&lt;!--此时该方法会抛出异常，请throws--&gt;</span><br><span class="line">while((b=in.read())!=-1)&#123;</span><br><span class="line"> System.out.print(b);</span><br><span class="line"> if(i++%5==0)&#123;</span><br><span class="line">    System.out.println(&quot;&quot;);&lt;!--实现每5个换行--&gt;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<!DOCTYPE html>
+<html >
+<head>
+    <!--
+    /**
+    * Author: Li Kachung
+    * Contact: leekachung17@gmail.com
+    */
+-->
+<meta charset="utf-8" />
+<meta name="referrer" content="no-referrer" />
+
+<meta name="generator" content="Hexo 3.8.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>java之IO流学习 - Hexo</title>
+
+
+    <meta name="description" content="IO流（输入流、输出流）字节流、字符流1.字节流（1）InputStream、OutputStream    InputStream抽象了应用程序读取数据的方式    OutputStream抽象了应用程序写出数据的方式（2）EOF = End 读到-1就读到结尾（3）输入流基本方法    int b = in.read(); 读取一个字节无符号填充到int低八位。    -1是EOF    in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java之IO流学习">
+<meta property="og:url" content="http://Dwexr.github.io/2019/05/16/java之字节流/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="IO流（输入流、输出流）字节流、字符流1.字节流（1）InputStream、OutputStream    InputStream抽象了应用程序读取数据的方式    OutputStream抽象了应用程序写出数据的方式（2）EOF = End 读到-1就读到结尾（3）输入流基本方法    int b = in.read(); 读取一个字节无符号填充到int低八位。    -1是EOF    in">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://dwexr.github.io/images/og_image.png">
+<meta property="og:updated_time" content="2019-05-17T06:39:12.942Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java之IO流学习">
+<meta name="twitter:description" content="IO流（输入流、输出流）字节流、字符流1.字节流（1）InputStream、OutputStream    InputStream抽象了应用程序读取数据的方式    OutputStream抽象了应用程序写出数据的方式（2）EOF = End 读到-1就读到结尾（3）输入流基本方法    int b = in.read(); 读取一个字节无符号填充到int低八位。    -1是EOF    in">
+<meta name="twitter:image" content="http://dwexr.github.io/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/./images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="https://raw.githubusercontent.com/leekachung/ImgOss/master/LKC1.jpg" alt="java之IO流学习" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu" style="font-weight:700 !important;">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    Search
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-05-16T13:56:26.000Z">2019-05-16</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 read (About 431 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                java之IO流学习
+            
+        </h1>
+        <div class="content">
+            <h2 id="IO流（输入流、输出流）"><a href="#IO流（输入流、输出流）" class="headerlink" title="IO流（输入流、输出流）"></a>IO流（输入流、输出流）</h2><p>字节流、字符流<br>1.字节流<br>（1）InputStream、OutputStream<br>    InputStream抽象了应用程序读取数据的方式<br>    OutputStream抽象了应用程序写出数据的方式<br>（2）EOF = End 读到-1就读到结尾<br>（3）输入流基本方法<br>    int b = in.read(); 读取一个字节无符号填充到int低八位。<br>    -1是EOF<br>    in.read(byte[] buf)<br>    in.read(byte[] buf,int start,int size)<br>（4)输出流基本方法<br>    out.write(int b) 写出一个byte到流，b的低八位<br>    out.write(byte[] buf)将buf字节数组都写入到流<br>    out.write(byte[] buf,int start,int size)<br>（5）FileinputStream实现字符流文件读取</p>
+<p>2.所有的IO会抛出IOException异常<br>解决：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import java.io.IOException;</span><br></pre></td></tr></table></figure></p>
+<p>同时不要忘了捕捉异常,以IOException为例。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">i.print(&quot;C:\\Users\\Administrator\\Desktop\\text\\git.txt&quot;);</span><br><span class="line">&#125; catch (IOException e) &#123;</span><br><span class="line">	// TODO Auto-generated catch block</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>——————————————-我是补坑的分割线—————————————–<br>3.java之矩阵输出<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream in = new FileInputStream();</span><br><span class="line">&lt;!--此时该方法会抛出异常，请throws--&gt;</span><br><span class="line">while((b=in.read())!=-1)&#123;</span><br><span class="line"> System.out.print(b);</span><br><span class="line"> if(i++%5==0)&#123;</span><br><span class="line">    System.out.println(&quot;&quot;);&lt;!--实现每5个换行--&gt;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>——————————————-我是补坑的分割线—————————————–<br>4.关于异常IOException与FileNotFoundException的关系<br><a id="more"></a><br><img src="/2019/05/16/java之字节流/01.png" alt="java之字节流"><br><!-- more --></p>
-<p>——————————————-我是补坑的分割线—————————————–<br>5.建立FileInputStream对象<br>第一种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InputStream inputstream1 = new FileInputStream(new File(&quot;C:\\\\git.txt&quot;));</span><br></pre></td></tr></table></figure></p>
-<p>第二种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">File file1 = new File(&quot;C:\\\\Users\\\\Administrator\\\\Desktop\\\\text\\\\git.txt&quot;);</span><br><span class="line">FileInputStream f = new FileInputStream(file1);</span><br></pre></td></tr></table></figure></p>
-<p>第三种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">File file2 = new File(&quot;C:\\\\Users\\\\Administrator\\\\Desktop\\\\text\\\\git.txt&quot;);</span><br><span class="line">InputStream inputstream = new FileInputStream(file2);</span><br></pre></td></tr></table></figure></p>
+<p>——————————————-我是补坑的分割线—————————————–<br>5.建立FileInputStream对象<br>第一种：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InputStream inputstream1 = new FileInputStream(new File(&quot;C:\\\\git.txt&quot;));</span><br></pre></td></tr></table></figure></p>
+<p>第二种：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">File file1 = new File(&quot;C:\\\\Users\\\\Administrator\\\\Desktop\\\\text\\\\git.txt&quot;);</span><br><span class="line">FileInputStream f = new FileInputStream(file1);</span><br></pre></td></tr></table></figure></p>
+<p>第三种：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">File file2 = new File(&quot;C:\\\\Users\\\\Administrator\\\\Desktop\\\\text\\\\git.txt&quot;);</span><br><span class="line">InputStream inputstream = new FileInputStream(file2);</span><br></pre></td></tr></table></figure></p>
 <p>——————————————-我是补坑的分割线—————————————–</p>
 <p>6.InputStream中的read()方法<br>    在没有参数的情况下，流的数据会传到栈里。</p>
 <p>7.FileInputStream里都是采用绝对路径，也可以获取父路径来获取相对路径。</p>
-</div></div><div class="post-main post-comment"></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
-  $(".fancybox").fancybox();
+
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with<br></h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>Alipay</span>
+    <div class="qrcode"><img src="https://raw.githubusercontent.com/leekachung/ImgOss/master/ali.JPG" alt="Alipay"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="https://raw.githubusercontent.com/leekachung/ImgOss/master/wechat.JPG" alt="Wechat"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/06/23/windows自带的远程连接/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Prev</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/11/Laravel学习中的坑（一）/">
+                <span class="level-item">Next</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'l5d5xuDu4hjvEWX35ETJsrkw-gzGzoHsz',
+        app_key: 'sW4c2fpdngPjA8Gz3ecC2pdA',
+        placeholder: 'mark something here'
+    });
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" style="border-radius: 50%" src="https://raw.githubusercontent.com/leekachung/ImgOss/master/logo.JPG" alt="Li Kachung">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Li Kachung
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Agu Wangfo
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>ZhuHai, Guangdong</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Archives
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        16
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/leekachung" target="_blank">
+                Github</a>
+        </div>
+        
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/05/git创建并合并分支/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="git创建并合并分支">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-05T02:05:44.000Z">2019-09-05</time></div>
+                    <a href="/2019/09/05/git创建并合并分支/" class="title has-link-black-ter is-size-6 has-text-weight-normal">git创建并合并分支</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/25/cmd中启动tomcat出现乱码的解决方案/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="cmd中启动tomcat出现乱码的解决方案">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-25T05:29:17.000Z">2019-08-25</time></div>
+                    <a href="/2019/08/25/cmd中启动tomcat出现乱码的解决方案/" class="title has-link-black-ter is-size-6 has-text-weight-normal">cmd中启动tomcat出现乱码的解决方案</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/25/git7-25/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="git error：failed to push some refs to">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-25T07:05:38.000Z">2019-07-25</time></div>
+                    <a href="/2019/07/25/git7-25/" class="title has-link-black-ter is-size-6 has-text-weight-normal">git error：failed to push some refs to</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/25/Hailstone问题/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hailstone Sequence">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-25T06:57:53.000Z">2019-07-25</time></div>
+                    <a href="/2019/07/25/Hailstone问题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hailstone Sequence</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/22/permission-denied-publickey的解决问题/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="permission denied （publickey）的解决问题">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-22T12:08:49.000Z">2019-07-22</time></div>
+                    <a href="/2019/07/22/permission-denied-publickey的解决问题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">permission denied （publickey）的解决问题</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/05/git创建并合并分支/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="git创建并合并分支">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-05T02:05:44.000Z">2019-09-05</time></div>
+                    <a href="/2019/09/05/git创建并合并分支/" class="title has-link-black-ter is-size-6 has-text-weight-normal">git创建并合并分支</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/25/cmd中启动tomcat出现乱码的解决方案/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="cmd中启动tomcat出现乱码的解决方案">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-25T05:29:17.000Z">2019-08-25</time></div>
+                    <a href="/2019/08/25/cmd中启动tomcat出现乱码的解决方案/" class="title has-link-black-ter is-size-6 has-text-weight-normal">cmd中启动tomcat出现乱码的解决方案</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/25/git7-25/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="git error：failed to push some refs to">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-25T07:05:38.000Z">2019-07-25</time></div>
+                    <a href="/2019/07/25/git7-25/" class="title has-link-black-ter is-size-6 has-text-weight-normal">git error：failed to push some refs to</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/25/Hailstone问题/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hailstone Sequence">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-25T06:57:53.000Z">2019-07-25</time></div>
+                    <a href="/2019/07/25/Hailstone问题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hailstone Sequence</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/22/permission-denied-publickey的解决问题/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="permission denied （publickey）的解决问题">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-22T12:08:49.000Z">2019-07-22</time></div>
+                    <a href="/2019/07/22/permission-denied-publickey的解决问题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">permission denied （publickey）的解决问题</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="https://raw.githubusercontent.com/leekachung/ImgOss/master/LKC1.jpg" alt="java之IO流学习" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Li Kachung</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="My GitHub" href="https://github.com/leekachung">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="My Email" href="mailto:leekachung17@gmail.com">
+                        
+                        <i class="fas fa-reply"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+
+    <div style="display:none">
+        <script type="text/javascript" src="https://s23.cnzz.com/z_stat.php?id=1277037282&web_id=1277037282"></script>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
 });
-</script></body></html>
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

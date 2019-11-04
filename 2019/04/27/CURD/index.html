@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Laravel之DB facade 实现CURD | Hexo</title>
+  <meta name="description" content="A geeker blog.">
+  <meta name="keywords" content="hexo,theme,icer,ggice">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="连接数据库打开文件\vendor\.env文件进行修改。 123456DB_CONNECTION=mysqlDB_HOST=localhostDB_PORT=3306DB_DATABASE=laravelDB_USERNAME=rootDB_PASSWORD=root 路由设置(方法很多）1Route::any(&apos;text1&apos; , [&apos;uses&apos; =&amp;gt; &apos;StudentController">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel之DB facade 实现CURD">
+<meta property="og:url" content="http://Dwexr.github.io/2019/04/27/CURD/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="连接数据库打开文件\vendor\.env文件进行修改。 123456DB_CONNECTION=mysqlDB_HOST=localhostDB_PORT=3306DB_DATABASE=laravelDB_USERNAME=rootDB_PASSWORD=root 路由设置(方法很多）1Route::any(&apos;text1&apos; , [&apos;uses&apos; =&amp;gt; &apos;StudentController">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-27T08:14:31.754Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laravel之DB facade 实现CURD">
+<meta name="twitter:description" content="连接数据库打开文件\vendor\.env文件进行修改。 123456DB_CONNECTION=mysqlDB_HOST=localhostDB_PORT=3306DB_DATABASE=laravelDB_USERNAME=rootDB_PASSWORD=root 路由设置(方法很多）1Route::any(&apos;text1&apos; , [&apos;uses&apos; =&amp;gt; &apos;StudentController">
+  
+  
+
+  <link rel="stylesheet" href="//cdn.x21.xyz/libs/nprogress/0.2.0/nprogress.css">
+  <link rel="stylesheet" href="//cdn.x21.xyz/libs/highlight/9.12.0/styles/github-gist.css">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_405585_yuudmyqpo3q.css">
+  <script src="//cdn.x21.xyz/libs/nprogress/0.2.0/nprogress.js"></script>
+  <!-- <script>try{Typekit.load({ async: false });}catch(e){}</script> -->
+  <link rel="stylesheet" href="/style.css">
+  
+
+  
+
+<!-- baidu Analytics -->
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?403460ed7637fb6c4a9e09a74e662ca0";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+  
+<!-- End baidu Analytics -->
+
+
+</head>
+</html>
+<body>
+  
+  <script>NProgress.start();</script>
+  
+  <div id="site-wrapper">
+    
+    <header class="header">
+  <div class="header-wrapper">
+    <a href="/">
+      <img src="/image/logo.jpg" class="logo">
+      <!-- <span class="site-desc">
+        
+      </span> -->
+    </a>
+    <div class="social-wrapper">
+      
+        
+          <a href="https://twitter.com/iggice" class="social twitter" target="_blank" rel="external">
+            <span class="iconfont icon-twitter"></span>
+          </a>
+          
+          <a href="https://github.com/ggice" class="social github" target="_blank" rel="external">
+            <span class="iconfont icon-github"></span>
+          </a>
+          
+          <a href="http://ggice.lofter.com/" class="social lofter" target="_blank" rel="external">
+            <span class="iconfont icon-lofter"></span>
+          </a>
+          
+          <a href="https://dribbble.com/ggice" class="social dribbble" target="_blank" rel="external">
+            <span class="iconfont icon-dribbble"></span>
+          </a>
+          
+          <a href="mailto:i@ice.gs" class="social email" target="_blank" rel="external">
+            <span class="iconfont icon-email"></span>
+          </a>
+          
+          <a href="/atom.xml" class="social rss" target="_blank" rel="external">
+            <span class="iconfont icon-rss"></span>
+          </a>
+          
+      
+      
+      <a href="#" class="social search-do" target="_blank" rel="external">
+        <span class="iconfont icon-search"></span>
+      </a>
+            
+      <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://Dwexr.github.io"></form> -->
+    </div>
+    <div class="search-wrap">
+      <div class="search-content animated fade-in">
+        <p class="search-input">
+          <span class="iconfont icon-search"></span>
+          <input tabindex="1">
+        </p>
+        <ul class="search-result">
+            
+        </ul>
+      </div>
+    </div>
+    <nav class="header-nav">
+      
+        <a href="/" class="archives">
+          home
+        </a>
+        
+        <a href="/tags/web-development/" class="archives">
+          web development
+        </a>
+        
+        <a href="/tags/soft/" class="archives">
+          soft
+        </a>
+        
+        <a href="/tags/os/" class="archives">
+          os
+        </a>
+        
+        <a href="/archives" class="archives">
+          archives
+        </a>
+        
+        <a href="/README/" class="archives">
+          README
+        </a>
+        
+    </nav>
+  </div>
+</header>
+    <script>NProgress.set(0.4);</script>
+    
+    <main id="main" role="main">
+      <article id="laravel--db-CURD" class="post article white-box article-type-laravel--db animated fade-in-top" itemscope itemprop="blogPost">
+  <section class="post-header article-header">
+    <h2 class="title">
+        <a href="/2019/04/27/CURD/">
+          Laravel之DB facade 实现CURD
+        </a>
+      </h2>
+      <div class="subtitle">
+          <time>
+            Apr 27, 2019
+          </time>
+          
+      </div>
+  </section>
+  <section class="content">
+    <div class="article-entry" itemprop="articleBody">
+      <hr>
+<h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><pre><code>打开文件\vendor\.env文件进行修改。
+</code></pre><figure class="highlight markdown hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DB_CONNECTION=mysql</span><br><span class="line">DB_HOST=localhost</span><br><span class="line">DB_PORT=3306</span><br><span class="line">DB_DATABASE=laravel</span><br><span class="line">DB_USERNAME=root</span><br><span class="line">DB_PASSWORD=root</span><br></pre></td></tr></table></figure>
+<h2 id="路由设置-方法很多）"><a href="#路由设置-方法很多）" class="headerlink" title="路由设置(方法很多）"></a>路由设置(方法很多）</h2><figure class="highlight markdown hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Route::any('text1' , ['uses' =&gt; 'StudentController@text1']);</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="控制器文件—StudentController-php"><a href="#控制器文件—StudentController-php" class="headerlink" title="控制器文件—StudentController.php"></a>控制器文件—StudentController.php</h2><figure class="highlight markdown hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace  App\Http\Controllers;</span><br><span class="line"></span><br><span class="line">use Illuminate\Support\Facades\DB;</span><br><span class="line"></span><br><span class="line">//DB facade 实现CURD(增删改查)</span><br><span class="line">class StudentController extends Controller&#123;</span><br><span class="line">        public function text1()&#123;</span><br><span class="line"></span><br><span class="line">            //新增</span><br><span class="line">            $bool = DB::insert('insert into student(name, age) value (?, ? )',['Rabbit',10 ]);</span><br><span class="line">            var_dump($bool);</span><br><span class="line"></span><br><span class="line">//            //更新</span><br><span class="line">//            $num = DB::update('update student set age=? where name =? ', [9,'Rabbit']);</span><br><span class="line">//            var_dump($num);</span><br><span class="line"></span><br><span class="line">              //查询</span><br><span class="line">//            测试是否连接成功数据库，若成功会查出一个数组，如果为空表，则返回一个空数组。</span><br><span class="line">//            $students = DB::select('select * from student where id &gt; ?',[1]);</span><br><span class="line">//            dd($students);</span><br><span class="line"></span><br><span class="line"><span class="hljs-code">              //删除</span></span><br><span class="line">//            $num = DB::delete('delete from student where id&gt;?', [1]);</span><br><span class="line">//            var_dump($num);</span><br><span class="line"><span class="hljs-code">        &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+  </section>
+
+  
+  
+</article>
+      <script>NProgress.set(0.6);</script>
+    </main>
+    
+    <footer class="footer">
+  <div class="footer-wrap">
+    <div class="footer-link">
+      
+      <h3>LINKS</h3>
+      <p>
+        
+          <a href="http://1x0.xyz/" target="_blank">Tian1x0</a>
+        
+          <a href="http://www.royalmice.com/hankzhou/" target="_blank">Hankzhou</a>
+        
+          <a href="http://sjydh.me/" target="_blank">设计有点货</a>
+        
+          <a href="https://developers.google.com/web/fundamentals/" target="_blank">Web fundamentals</a>
+        
+      </p>
+      
+    </div>
+    <div class="footer-tags">
+      
+    </div>
+    <div class="footer-info">
+        <div>Theme <span class="codename"><a href="https://github.com/GGICE/hexo-icer" target="_blank">icer</a></span> designed & coded by <a href="https://ice.gs/" target="_blank">GGICE</a></div>
+        <div>Copyright &copy; 2019, <a href="/">Hexo</a>  . All rights reserved .</div>
+      </div>
+  </div>
+</footer>
+
+
+    <script>NProgress.set(0.8);</script>
+    
+  </div>
+
+  <script src="//cdn.x21.xyz/libs/highlight/9.12.0/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/js/main.js"></script>
+
+<!-- Commit -->
+
+
+
+  <script>
+    NProgress.done();
+  </script>
+  
+</body>
+</html>

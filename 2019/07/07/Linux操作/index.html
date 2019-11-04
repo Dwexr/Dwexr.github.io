@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Linux常用的一些命令 | Hexo</title>
+  <meta name="description" content="A geeker blog.">
+  <meta name="keywords" content="hexo,theme,icer,ggice">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.删除文件-r 就是向下递归，不管有多少级目录，一并删除-f 就是直接强行删除，不作任何提示的意思 删除文件夹实例，在删除整个文件夹时，无需进入该文件所在路径，可通过rm -rf +文件夹所在路径删除。1rm -rf /usr/local/nginx/html/test 删除单个文件，可进入该文件所在文件夹，通过rm -f+文件名删除。1rm -f one.html 删除单个文件也可通过rm -">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用的一些命令">
+<meta property="og:url" content="http://Dwexr.github.io/2019/07/07/Linux操作/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.删除文件-r 就是向下递归，不管有多少级目录，一并删除-f 就是直接强行删除，不作任何提示的意思 删除文件夹实例，在删除整个文件夹时，无需进入该文件所在路径，可通过rm -rf +文件夹所在路径删除。1rm -rf /usr/local/nginx/html/test 删除单个文件，可进入该文件所在文件夹，通过rm -f+文件名删除。1rm -f one.html 删除单个文件也可通过rm -">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-25T08:06:55.063Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux常用的一些命令">
+<meta name="twitter:description" content="1.删除文件-r 就是向下递归，不管有多少级目录，一并删除-f 就是直接强行删除，不作任何提示的意思 删除文件夹实例，在删除整个文件夹时，无需进入该文件所在路径，可通过rm -rf +文件夹所在路径删除。1rm -rf /usr/local/nginx/html/test 删除单个文件，可进入该文件所在文件夹，通过rm -f+文件名删除。1rm -f one.html 删除单个文件也可通过rm -">
+  
+  
+
+  <link rel="stylesheet" href="//cdn.x21.xyz/libs/nprogress/0.2.0/nprogress.css">
+  <link rel="stylesheet" href="//cdn.x21.xyz/libs/highlight/9.12.0/styles/github-gist.css">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_405585_yuudmyqpo3q.css">
+  <script src="//cdn.x21.xyz/libs/nprogress/0.2.0/nprogress.js"></script>
+  <!-- <script>try{Typekit.load({ async: false });}catch(e){}</script> -->
+  <link rel="stylesheet" href="/style.css">
+  
+
+  
+
+<!-- baidu Analytics -->
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?403460ed7637fb6c4a9e09a74e662ca0";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+  
+<!-- End baidu Analytics -->
+
+
+</head>
+</html>
+<body>
+  
+  <script>NProgress.start();</script>
+  
+  <div id="site-wrapper">
+    
+    <header class="header">
+  <div class="header-wrapper">
+    <a href="/">
+      <img src="/image/logo.jpg" class="logo">
+      <!-- <span class="site-desc">
+        
+      </span> -->
+    </a>
+    <div class="social-wrapper">
+      
+        
+          <a href="https://twitter.com/iggice" class="social twitter" target="_blank" rel="external">
+            <span class="iconfont icon-twitter"></span>
+          </a>
+          
+          <a href="https://github.com/ggice" class="social github" target="_blank" rel="external">
+            <span class="iconfont icon-github"></span>
+          </a>
+          
+          <a href="http://ggice.lofter.com/" class="social lofter" target="_blank" rel="external">
+            <span class="iconfont icon-lofter"></span>
+          </a>
+          
+          <a href="https://dribbble.com/ggice" class="social dribbble" target="_blank" rel="external">
+            <span class="iconfont icon-dribbble"></span>
+          </a>
+          
+          <a href="mailto:i@ice.gs" class="social email" target="_blank" rel="external">
+            <span class="iconfont icon-email"></span>
+          </a>
+          
+          <a href="/atom.xml" class="social rss" target="_blank" rel="external">
+            <span class="iconfont icon-rss"></span>
+          </a>
+          
+      
+      
+      <a href="#" class="social search-do" target="_blank" rel="external">
+        <span class="iconfont icon-search"></span>
+      </a>
+            
+      <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://Dwexr.github.io"></form> -->
+    </div>
+    <div class="search-wrap">
+      <div class="search-content animated fade-in">
+        <p class="search-input">
+          <span class="iconfont icon-search"></span>
+          <input tabindex="1">
+        </p>
+        <ul class="search-result">
+            
+        </ul>
+      </div>
+    </div>
+    <nav class="header-nav">
+      
+        <a href="/" class="archives">
+          home
+        </a>
+        
+        <a href="/tags/web-development/" class="archives">
+          web development
+        </a>
+        
+        <a href="/tags/soft/" class="archives">
+          soft
+        </a>
+        
+        <a href="/tags/os/" class="archives">
+          os
+        </a>
+        
+        <a href="/archives" class="archives">
+          archives
+        </a>
+        
+        <a href="/README/" class="archives">
+          README
+        </a>
+        
+    </nav>
+  </div>
+</header>
+    <script>NProgress.set(0.4);</script>
+    
+    <main id="main" role="main">
+      <article id="post-Linux操作" class="post article white-box article-type-post animated fade-in-top" itemscope itemprop="blogPost">
+  <section class="post-header article-header">
+    <h2 class="title">
+        <a href="/2019/07/07/Linux操作/">
+          Linux常用的一些命令
+        </a>
+      </h2>
+      <div class="subtitle">
+          <time>
+            Jul 7, 2019
+          </time>
+          
+      </div>
+  </section>
+  <section class="content">
+    <div class="article-entry" itemprop="articleBody">
+      <h2 id="1-删除文件"><a href="#1-删除文件" class="headerlink" title="1.删除文件"></a>1.删除文件</h2><p>-r 就是向下递归，不管有多少级目录，一并删除<br>-f 就是直接强行删除，不作任何提示的意思</p>
+<p>删除文件夹实例，在删除整个文件夹时，无需进入该文件所在路径，可通过rm -rf +文件夹所在路径删除。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /usr/local/nginx/html/test</span><br></pre></td></tr></table></figure></p>
+<p>删除单个文件，可进入该文件所在文件夹，通过rm -f+文件名删除。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -f one.html</span><br></pre></td></tr></table></figure></p>
+<p>删除单个文件也可通过rm -f +路径+文件名删除。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -f /usr/local/nginx/html/one.html</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-显示文件夹所含所有文件"><a href="#2-显示文件夹所含所有文件" class="headerlink" title="2.显示文件夹所含所有文件"></a>2.显示文件夹所含所有文件</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
+<h2 id="3-查看Linux输入命令的历史会话"><a href="#3-查看Linux输入命令的历史会话" class="headerlink" title="3.查看Linux输入命令的历史会话"></a>3.查看Linux输入命令的历史会话</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history</span><br></pre></td></tr></table></figure>
+<h2 id="4-Nginx重启"><a href="#4-Nginx重启" class="headerlink" title="4.Nginx重启"></a>4.Nginx重启</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin</span><br><span class="line">./nginx -s reload</span><br></pre></td></tr></table></figure>
+<h2 id="5-改变文件权限"><a href="#5-改变文件权限" class="headerlink" title="5.改变文件权限"></a>5.改变文件权限</h2><p>在Unix和Linux的各种操作系统下，每个文件（文件夹也被看作是文件）都按读、写、运行设定权限。</p>
+<p>| + :  表示增加权限、- 表示取消权限、= 表示唯一设定权限<br>| r : 表示可读取，w 表示可写入，x 表示可执行。<br>| u : 表示该档案的拥有者，g 表示与该档案的拥有者属于同一个群体(group)者，o 表示其他以外的人。<br>| -R : 对目前目录下的所有档案与子目录进行相同的权限变更(即以递回的方式逐个变更)</p>
+<p>例：将档案（单个文件）设为所有人皆可读取。<br>第一种：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod ugo+r  file1.txt</span><br></pre></td></tr></table></figure></p>
+<p>第二种：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod a file1.txt</span><br></pre></td></tr></table></figure></p>
+<p>可用字母表示对象，可用数字表示权限。<br>例：将当前目录所有档案与子目录设为可读取、写入、执行。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 storage</span><br></pre></td></tr></table></figure></p>
+<p>转：<a href="https://blog.csdn.net/marleylee/article/details/77251288" target="_blank" rel="noopener">https://blog.csdn.net/marleylee/article/details/77251288</a></p>
+<p>## </p>
+
+    </div>
+  </section>
+
+  
+  
+</article>
+      <script>NProgress.set(0.6);</script>
+    </main>
+    
+    <footer class="footer">
+  <div class="footer-wrap">
+    <div class="footer-link">
+      
+      <h3>LINKS</h3>
+      <p>
+        
+          <a href="http://1x0.xyz/" target="_blank">Tian1x0</a>
+        
+          <a href="http://www.royalmice.com/hankzhou/" target="_blank">Hankzhou</a>
+        
+          <a href="http://sjydh.me/" target="_blank">设计有点货</a>
+        
+          <a href="https://developers.google.com/web/fundamentals/" target="_blank">Web fundamentals</a>
+        
+      </p>
+      
+    </div>
+    <div class="footer-tags">
+      
+    </div>
+    <div class="footer-info">
+        <div>Theme <span class="codename"><a href="https://github.com/GGICE/hexo-icer" target="_blank">icer</a></span> designed & coded by <a href="https://ice.gs/" target="_blank">GGICE</a></div>
+        <div>Copyright &copy; 2019, <a href="/">Hexo</a>  . All rights reserved .</div>
+      </div>
+  </div>
+</footer>
+
+
+    <script>NProgress.set(0.8);</script>
+    
+  </div>
+
+  <script src="//cdn.x21.xyz/libs/highlight/9.12.0/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/js/main.js"></script>
+
+<!-- Commit -->
+
+
+
+  <script>
+    NProgress.done();
+  </script>
+  
+</body>
+</html>
